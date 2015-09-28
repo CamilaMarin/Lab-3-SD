@@ -1,7 +1,7 @@
-var SU = require('../models/alumnos');
-var SU2 = require('../models/alumnos2');
-var SU3 = require('../models/alumnos3');
-var SU4 = require('../models/alumnos4');
+var AUX = require('../models/alumnos');
+var AUX2 = require('../models/alumnos2');
+var AUX3 = require('../models/alumnos3');
+var AUX4 = require('../models/alumnos4');
 
 var crypto = require('crypto');
 var key = 'lab3';
@@ -9,10 +9,7 @@ var key = 'lab3';
 module.exports = function(app){
 	
 	app.get('/', function(req, res){
-		//SU.list(function(e, subs){
-			res.render('index', { title: 'Lista de suscriptores',error:'' });
-		//})
-		
+			res.render('index', { title: 'Ingresar alumnos',error:'' });
 	})
 	
 	app.post('/', function(req, res){
@@ -24,34 +21,56 @@ module.exports = function(app){
 		console.log((parseInt(value,16))%3);
 		var bd = parseInt(value,16)%3;
 		if(bd==0){
-			SU.new({name: req.param('name'), email: req.param('email')}, function(o){
-				//SU.list(function(e, subs){
-					res.render('index', { title: 'Lista de suscriptores', error:o});
-				//})
+			AUX.new({name: req.param('name'), email: req.param('email')}, function(o){
+					res.render('index', { title: 'Ingresar alumnos', error: 'Alumno ingresado correctamente'});
 			})
 		}
 		else if(bd==1){
-			SU2.new({name: req.param('name'), email: req.param('email')}, function(o){
-				//SU.list(function(e, subs){
-					res.render('index', { title: 'Lista de suscriptores', error:o});
-				//})
+			AUX2.new({name: req.param('name'), email: req.param('email')}, function(o){
+					res.render('index', { title: 'Ingresar alumnos', error: 'Alumno ingresado correctamente'});
 			})
 		}
 		else if(bd==2){
-			SU3.new({name: req.param('name'), email: req.param('email')}, function(o){
-				//SU.list(function(e, subs){
-					res.render('index', { title: 'Lista de suscriptores', error:o});
-				//})
+			AUX3.new({name: req.param('name'), email: req.param('email')}, function(o){
+					res.render('index', { title: 'Ingresar alumnos', error: 'Alumno ingresado correctamente'});
 			})
 		}
 		else if(bd==3){
-			SU4.new({name: req.param('name'), email: req.param('email')}, function(o){
-				//SU.list(function(e, subs){
-					res.render('index', { title: 'Lista de suscriptores', error:o});
-				//})
+			AUX4.new({name: req.param('name'), email: req.param('email')}, function(o){
+					res.render('index', { title: 'Ingresar alumnos', error: 'Alumno ingresado correctamente'});
 			})
 		}
 		
+	})
+
+	app.get('/buscar', function(req, res){
+		res.render('buscar', { title: 'Buscar alumnos', alumnos: '' });
+	})
+
+	app.post('/buscar',function(req, res){
+		var resultado = [];
+		var i;
+		AUX.list({filtro: req.param('filtro')}, function(e, alumnos){
+			for (i = 0; i < alumnos.length; i++) {
+				resultado.push(alumnos[i]);
+			}
+			AUX2.list({filtro: req.param('filtro')}, function(e, alumnos2){
+				for (i = 0; i < alumnos2.length; i++) {
+					resultado.push(alumnos2[i]);
+				}
+				AUX3.list({filtro: req.param('filtro')}, function(e, alumnos3){
+					for (i = 0; i < alumnos3.length; i++) {
+						resultado.push(alumnos3[i]);
+					}
+					AUX4.list({filtro: req.param('filtro')}, function(e, alumnos4){
+						for (i = 0; i < alumnos4.length; i++) {
+							resultado.push(alumnos4[i]);
+						}
+						res.render('buscar', { title: 'Buscar alumnos',error:'', alumnos: resultado.sort() });
+					})
+				})
+			})
+		})
 	})
 	
 }

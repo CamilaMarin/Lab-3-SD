@@ -1,0 +1,24 @@
+extends layout
+
+block content
+	h1= title
+	a(href="/") Ingresar alumnos
+	br
+	br
+	form(method='post')
+		input(type='text', name="filtro")
+		input(type='submit', value='Buscar')
+		br
+		br
+		br
+		table(border=1, style="width:40%")
+			thead
+				tr
+					th Nombre
+					th email
+			tbody
+			each item in alumnos
+				tr
+					td #{item.name} 
+					td #{item.email}
+

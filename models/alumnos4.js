@@ -21,11 +21,15 @@ DB4.alumnos = DB4.db.collection('alumnos');
 module.exports = DB4;
 
 DB4.new = function(newData, callback){
-	DB4.alumnos.findOne({email: newData.email}, function(e,obj){
-		if(obj){
-			callback('Ese email ya existe.');
+	DB4.alumnos.insert(newData, callback(null))
+}
+
+DB4.list = function(data, callback){
+	DB4.alumnos.find({$or: [{name: data.filtro},{email: data.filtro}]}).toArray(function(e,res){
+		if(e){
+			callback(e)
 		}else{
-			DB4.alumnos.insert(newData, callback(null))
+			callback(null, res)
 		}
 	})
 }
