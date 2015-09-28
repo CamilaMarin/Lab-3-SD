@@ -21,22 +21,22 @@ module.exports = function(app){
 		console.log((parseInt(value,16))%3);
 		var bd = parseInt(value,16)%3;
 		if(bd==0){
-			AUX.new({name: req.param('name'), email: req.param('email')}, function(o){
+			AUX.new({name: req.param('name'), apellido: req.param('apellido'), carrera: req.param('carrera'), rut: req.param('rut')}, function(o){
 					res.render('index', { title: 'Ingresar alumnos', error: 'Alumno ingresado correctamente'});
 			})
 		}
 		else if(bd==1){
-			AUX2.new({name: req.param('name'), email: req.param('email')}, function(o){
+			AUX2.new({name: req.param('name'), apellido: req.param('apellido'), carrera: req.param('carrera'), rut: req.param('rut')}, function(o){
 					res.render('index', { title: 'Ingresar alumnos', error: 'Alumno ingresado correctamente'});
 			})
 		}
 		else if(bd==2){
-			AUX3.new({name: req.param('name'), email: req.param('email')}, function(o){
+			AUX3.new({name: req.param('name'), apellido: req.param('apellido'), carrera: req.param('carrera'), rut: req.param('rut')}, function(o){
 					res.render('index', { title: 'Ingresar alumnos', error: 'Alumno ingresado correctamente'});
 			})
 		}
 		else if(bd==3){
-			AUX4.new({name: req.param('name'), email: req.param('email')}, function(o){
+			AUX4.new({name: req.param('name'), apellido: req.param('apellido'), carrera: req.param('carrera'), rut: req.param('rut')}, function(o){
 					res.render('index', { title: 'Ingresar alumnos', error: 'Alumno ingresado correctamente'});
 			})
 		}

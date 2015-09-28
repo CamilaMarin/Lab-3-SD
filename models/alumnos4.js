@@ -25,7 +25,7 @@ DB4.new = function(newData, callback){
 }
 
 DB4.list = function(data, callback){
-	DB4.alumnos.find({$or: [{name: data.filtro},{email: data.filtro}]}).toArray(function(e,res){
+	DB4.alumnos.find({$or: [{name: data.filtro},{apellido: data.filtro},{carrera: data.filtro},{rut: data.filtro}]}).toArray(function(e,res){
 		if(e){
 			callback(e)
 		}else{

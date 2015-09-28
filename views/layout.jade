@@ -1,9 +1,24 @@
 doctype 5
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
-    script(src='/javascripts/main.js')
-  body
-    block content
+	head
+		title= title
+		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css')
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
+		script(src='/javascripts/main.js')
+	body
+		block content
+		br
+		br
+		.col-md-8
+			h3 Desarrollado por:
+			.row
+				.col-lg-4
+					img.img-circle(src='https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-xtf1/v/t1.0-9/12032104_10153043489876135_8663470494313295444_n.jpg?oh=5ed95b24312b58e61b3d47a0facb0b3b&oe=56A4CD3D&__gda__=1454073881_fec7381a43d099996726f73d9967c56c', alt='Generic placeholder image', width='140', height='140')
+					h4 Alexis Casanueva
+				.col-lg-4
+					img.img-circle(src='https://scontent-gru1-1.xx.fbcdn.net/hphotos-frc3/v/t1.0-9/644533_4461269651907_825104326_n.jpg?oh=6a299157a440445facdc69d1083c2daf&oe=56A1B67A', alt='Generic placeholder image', width='140', height='140')
+					h4 Camila Marín
+				.col-lg-4
+					img.img-circle(src='https://fbcdn-photos-b-a.akamaihd.net/hphotos-ak-xfa1/v/t1.0-0/p206x206/522841_351133101617556_453782700_n.jpg?oh=247e0557c281ac95ffaf6bb0ffeced9f&oe=565E513E&__gda__=1449141401_989b5a4cd022b15eda03fced2b3ea162', alt='Generic placeholder image', width='140', height='140')
+					h4 Yerko Pino  

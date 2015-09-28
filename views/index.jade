@@ -1,15 +1,33 @@
 extends layout
 
 block content
-  h1= title
-  a(href="/buscar") Buscar alumnos
-  br
-  br
-  form(method='post')
-      label Nombre
-      input(type='text', name="name")
-      label email
-      input(type='text', name='email')
-      input(type='submit', value='Suscribir')
-  br
-  div#error= error
+  .col-md-8
+    h1 Laboratorio 3 - Sistemas Distribuidos
+    .panel.panel-primary
+      .panel-heading= title
+      br
+      form.form-horizontal(method='post')
+          .form-group
+            label.col-sm-2.control-label(for='name') Nombre
+            .col-sm-6
+              input(type='text', name="name")
+          .form-group
+            label.col-sm-2.control-label(for='apellido') Apellido
+            .col-sm-6
+              input(type='text', name="apellido")
+          .form-group
+            label.col-sm-2.control-label(for='carrera') Carrera
+            .col-sm-6
+              select(name='carrera', placeholder='Carrera')
+                option(value='Ingeniería Civil Informática') Ingeniería Civil Informática
+                option(value='Ingeniería Civil Industrial') Ingeniería Civil Industrial
+                option(value='Ingeniería de Ejecución en Computación e Informática') Ingeniería de Ejecución en Computación e Informática
+          .form-group
+            label.col-sm-2.control-label(for='rut') Rut
+            .col-sm-6
+              input(type='text', name="rut")
+          .form-group
+            .col-sm-offset-2.col-sm-6
+              input(type='submit', value='Ingresar')
+    br
+    a.btn.btn-primary(href='/buscar', role='button') Buscar alumnos
