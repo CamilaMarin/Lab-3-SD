@@ -18,8 +18,8 @@ module.exports = function(app){
 		hash.update(req.param('rut'));
 		var value = hash.digest('hex');
 		console.log(value);
-		console.log((parseInt(value,16))%3);
-		var bd = parseInt(value,16)%3;
+		console.log((parseInt(value,16))%4);
+		var bd = parseInt(value,16)%4;
 		if(bd==0){
 			AUX.new({name: req.param('name'), apellido: req.param('apellido'), carrera: req.param('carrera'), rut: req.param('rut')}, function(o){
 					res.render('index', { title: 'Ingresar alumnos', error: 'Alumno ingresado correctamente'});
