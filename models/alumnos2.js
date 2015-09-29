@@ -33,3 +33,13 @@ DB2.list = function(data, callback){
 		}
 	})
 }
+
+DB2.list2 = function(data, callback){
+	DB2.alumnos.find({}).toArray(function(e,res){
+		if(e){
+			callback(e)
+		}else{
+			callback(null, res)
+		}
+	})
+}

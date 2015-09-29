@@ -1,4 +1,4 @@
-var AUX = require('../models/alumnos');
+var AUX = require('../models/alumnos');	
 var AUX2 = require('../models/alumnos2');
 var AUX3 = require('../models/alumnos3');
 var AUX4 = require('../models/alumnos4');
@@ -50,31 +50,60 @@ module.exports = function(app){
 	app.post('/buscar',function(req, res){
 		var resultado = [];
 		var i;
-		AUX.list({filtro: req.param('filtro')}, function(e, alumnos){
-			console.log('Buscando en base de datos en puerto 3000');
-			for (i = 0; i < alumnos.length; i++) {
-				resultado.push(alumnos[i]);
-			}
-			AUX2.list({filtro: req.param('filtro')}, function(e, alumnos2){
-				console.log('Buscando en base de datos en puerto 26999');
-				for (i = 0; i < alumnos2.length; i++) {
-					resultado.push(alumnos2[i]);
+		if(req.param('filtro')=='0'){
+			AUX.list2({}, function(e, alumnos){
+				console.log('Buscando en base de datos en puerto 3000');
+				for (i = 0; i < alumnos.length; i++) {
+					resultado.push(alumnos[i]);
 				}
-				AUX3.list({filtro: req.param('filtro')}, function(e, alumnos3){
-					console.log('Buscando en base de datos en puerto 1515');
-					for (i = 0; i < alumnos3.length; i++) {
-						resultado.push(alumnos3[i]);
+				AUX2.list2({}, function(e, alumnos2){
+					console.log('Buscando en base de datos en puerto 26999');
+					for (i = 0; i < alumnos2.length; i++) {
+						resultado.push(alumnos2[i]);
 					}
-					AUX4.list({filtro: req.param('filtro')}, function(e, alumnos4){
-						console.log('Buscando en base de datos en puerto 8080');
-						for (i = 0; i < alumnos4.length; i++) {
-							resultado.push(alumnos4[i]);
+					AUX3.list2({}, function(e, alumnos3){
+						console.log('Buscando en base de datos en puerto 1515');
+						for (i = 0; i < alumnos3.length; i++) {
+							resultado.push(alumnos3[i]);
 						}
-						res.render('buscar', { title: 'Buscar alumnos',error:'', alumnos: resultado.sort() });
+						AUX4.list2({}, function(e, alumnos4){
+							console.log('Buscando en base de datos en puerto 8080');
+							for (i = 0; i < alumnos4.length; i++) {
+								resultado.push(alumnos4[i]);
+							}
+							res.render('buscar', { title: 'Buscar alumnos',error:'', alumnos: resultado.sort() });
+						})
 					})
 				})
 			})
-		})
+		}
+		else{
+			AUX.list({filtro: req.param('filtro')}, function(e, alumnos){
+				console.log('Buscando en base de datos en puerto 3000');
+				for (i = 0; i < alumnos.length; i++) {
+					resultado.push(alumnos[i]);
+				}
+				AUX2.list({filtro: req.param('filtro')}, function(e, alumnos2){
+					console.log('Buscando en base de datos en puerto 26999');
+					for (i = 0; i < alumnos2.length; i++) {
+						resultado.push(alumnos2[i]);
+					}
+					AUX3.list({filtro: req.param('filtro')}, function(e, alumnos3){
+						console.log('Buscando en base de datos en puerto 1515');
+						for (i = 0; i < alumnos3.length; i++) {
+							resultado.push(alumnos3[i]);
+						}
+						AUX4.list({filtro: req.param('filtro')}, function(e, alumnos4){
+							console.log('Buscando en base de datos en puerto 8080');
+							for (i = 0; i < alumnos4.length; i++) {
+								resultado.push(alumnos4[i]);
+							}
+							res.render('buscar', { title: 'Buscar alumnos',error:'', alumnos: resultado.sort() });
+						})
+					})
+				})
+			})
+		}
 	})
 	
 }
